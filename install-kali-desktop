@@ -7,8 +7,8 @@ C="$(printf '\033[1;36m')"
 
 function package() {
     echo -e "${R} [${W}-${R}]${C} Checking required packages..."${W}
-    apt update -y
-    apt install sudo -y
+    sudo apt update -y
+    sudo apt install sudo -y
     apt --fix-broken install udisks2 -y
     rm /var/lib/dpkg/info/udisks2.postinst
     echo "" > /var/lib/dpkg/info/udisks2.postinst
@@ -71,6 +71,7 @@ mkdir /home/kali/.config/autostart/
 }
 
 function theme_setup() {
+        sudo apt install git -y
 	git clone --depth=1 https://github.com/vinceliuice/WhiteSur-gtk-theme /home/${user}/WhiteSur-gtk-theme
 	sudo chmod +x /home/${user}/WhiteSur-gtk-theme/install.sh
         sudo bash /home/${user}/WhiteSur-gtk-theme/install.sh
@@ -82,14 +83,12 @@ dbus-launch xfconf-query -c xsettings -p /Net/ThemeName -s "WhiteSur-Light"
 }
 
 function setup_plank() {
-	banner
 	gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ theme 'Gtk+'
 	gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ zoom-enabled true
 
 }
 
 function app_menu() {
-	banner
 	sudo apt install rofi -y
 	sudo apt install wget -y
 	mkdir -p ~/.config/rofi
