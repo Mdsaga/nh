@@ -16,7 +16,7 @@ function package() {
     sudo apt-mark hold udisks2
     sudo apt-mark unhold gvfs-daemons
     sudo dpkg --configure -a
-    packs=(sudo wget curl nano kali-menu kali-linux-core git keyboard-configuration qterminal leafpad tzdata librsvg2-common menu inetutils-tools dialog tightvncserver tigervnc-standalone-server tigervnc-tools dbus-x11 )
+    packs=(sudo wget curl nano kali-menu kali-linux-core git keyboard-configuration qterminal leafpad tzdata librsvg2-common menu kali-themes inetutils-tools dialog tightvncserver tigervnc-standalone-server tigervnc-tools dbus-x11 )
     sudo dpkg --configure -a
     for hulu in "${packs[@]}"; do
         type -p "$hulu" &>/dev/null || {
@@ -30,8 +30,7 @@ function package() {
 function xfce_install() {
 echo -e "${R} [${W}-${R}]${C} Installing XFCE DESKTOP"${W}
 	apt update
-       sudo apt install xfce4* kali-themes -y
-       banner
+       sudo apt install xfce4* -y
        echo -e "${R} [${W}-${R}]${C} Setting up VNC Server..."${W}
   if [[ ! -d "$HOME/.vnc" ]]; then
         mkdir -p "$HOME/.vnc"
@@ -127,8 +126,8 @@ echo "${G} setup successfull.."${W}
 
 }
 
-package
 xfce_install
+package
 extra_things
 customize
 theme_setup
