@@ -364,6 +364,7 @@ function check_desktop() {
 }
 
 function setup_desktop() {
+        clear
         pkg install wget -y	
 wget https://raw.githubusercontent.com/Mdsaga/nh/main/install-kali-desktop
 mv $HOME/install-kali-desktop $CHROOT/home/kali/install-kali-desktop  
@@ -371,7 +372,7 @@ mv $HOME/install-kali-desktop $CHROOT/home/kali/install-kali-desktop
 
 function plank_setup() {
 	if [[ ${wimg} == "full" ]]; then
-mv $CHROOT/home/kali/.bashrc $CHROOT/.bashrc
+        mv $CHROOT/home/kali/.bashrc $CHROOT/.bashrc
 	cat >> $CHROOT/home/kali/.bashrc <<- EOF
 	function customize() {
 	sudo apt update
@@ -399,6 +400,7 @@ mkdir /home/kali/.config/autostart/
 }
 
 function theme_setup() {
+        sudo apt install git -y
 	git clone --depth=1 https://github.com/vinceliuice/WhiteSur-gtk-theme /home/${user}/WhiteSur-gtk-theme
 	sudo chmod +x /home/${user}/WhiteSur-gtk-theme/install.sh
         sudo bash /home/${user}/WhiteSur-gtk-theme/install.sh
