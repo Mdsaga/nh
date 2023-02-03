@@ -375,24 +375,8 @@ function plank_setup() {
         sudo apt install wget -y
         wget https://raw.githubusercontent.com/Mdsaga/nh/main/install-app-menu
         mv $HOME/install-app-menu $CHROOT/home/kali/install-app-menu
-Launcher=file:///home/kali/.local/share/applications/appsearch.desktop" >> /home/kali/.config/plank/dock1/launchers/appsearch.dockitem
+fi 
 clear
-echo "${G} setup successfull.."${W}
-
-}
-
-customize
-theme_setup
-setup_plank
-app_menu
-
-	EOF
-rm $CHROOT/home/kali/.bashrc
-mv $CHROOT/.bashrc $CHROOT/home/kali/.bashrc 
-else
-	sleep 1
-	fi
-
 }
 
 function fix_profile_bash() {
